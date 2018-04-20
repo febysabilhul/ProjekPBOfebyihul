@@ -17,7 +17,11 @@ public class profil extends javax.swing.JFrame {
     public profil() {
         initComponents();
 nama.setText(nama.getText());
+email.setText(email.getText());
+  this.nama.setText(daftar.NamaUser);
+  this.email.setText(daftar.EmailUser);
   
+  this.nama.setText(login.NamaUser);
     }
 
     /**
@@ -34,10 +38,13 @@ nama.setText(nama.getText());
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        email = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nama.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         getContentPane().add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 24, 210, 50));
 
         jButton1.setBorderPainted(false);
@@ -75,6 +82,9 @@ nama.setText(nama.getText());
             }
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 483, 60, 50));
+
+        email.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 80, 220, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\profil.png")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 690));
@@ -137,6 +147,7 @@ dispose();// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel email;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

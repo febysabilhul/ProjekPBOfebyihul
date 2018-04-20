@@ -16,6 +16,11 @@ public class pesanan extends javax.swing.JFrame {
      */
     public pesanan() {
         initComponents();
+       menu.setText(menu.getText());
+jumlah.setText(jumlah.getText()); 
+  this.menu.setText(order.NamaMakanan);
+  this.jumlah.setText(order.BiayaMakanan);
+       
     }
 
     /**
@@ -27,22 +32,87 @@ public class pesanan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        menu = new javax.swing.JLabel();
+        jumlah = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Videos\\1.png")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 400, 690));
-
-        jButton1.setText("jButton1");
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 613, 60, 60));
+
+        jLabel2.setFont(new java.awt.Font("Multicolore ", 1, 18)); // NOI18N
+        jLabel2.setText("silahkan kirim biaya ke no. rek");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        jLabel5.setText("menu       :");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        jLabel3.setText("Jumlah   : - ayam goreng 20");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+
+        menu.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
+
+        jumlah.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        getContentPane().add(jumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        jLabel6.setText("6282338012658");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        jLabel7.setText("Biaya      :");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 184, -1, 30));
+
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 623, 170, 50));
+
+        jLabel9.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        jLabel9.setText("- ayam bakar 40");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        jLabel10.setText("- es buah 60");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        jLabel11.setText("rp. 2.950.000");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\pemby.png")); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 400, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -51,6 +121,11 @@ public class pesanan extends javax.swing.JFrame {
 new profil().setVisible(true);
 dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+new datapesanan().setVisible(true);
+dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +164,19 @@ dispose();// TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jumlah;
+    private javax.swing.JLabel menu;
     // End of variables declaration//GEN-END:variables
 }

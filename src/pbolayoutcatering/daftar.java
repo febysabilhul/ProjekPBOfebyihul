@@ -13,9 +13,11 @@ public class daftar extends javax.swing.JFrame {
 
     /**
      * Creates new form daftar
-     */
+     */ public static String NamaUser;
+     public static String EmailUser;
     public daftar() {
         initComponents();
+       
     }
 
     /**
@@ -40,6 +42,11 @@ public class daftar extends javax.swing.JFrame {
         nama.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
         nama.setBorder(null);
         nama.setOpaque(false);
+        nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaActionPerformed(evt);
+            }
+        });
         getContentPane().add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 240, 30));
 
         email.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
@@ -87,11 +94,18 @@ public class daftar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new menu().setVisible(true);
         dispose();
+        this.NamaUser=nama.getText();
+        this.EmailUser=email.getText();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
+
+    private void namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaActionPerformed
+nama.setToolTipText("Nama lengkap anda"); 
+    }//GEN-LAST:event_namaActionPerformed
 
     /**
      * @param args the command line arguments
