@@ -5,21 +5,69 @@
  */
 package pbolayoutcatering;
 
+import DB.DB_Main;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Febo
  */
 public class order extends javax.swing.JFrame {
 
+    public static String a;
+    public static int hasil1;
+    int id = 0;
+
     /**
      * Creates new form order
      */
-    public static String NamaMakanan;
-     public static String BiayaMakanan;
     public order() {
         initComponents();
-              this.NamaMakanan=(String) menu.getSelectedItem();
-              this.BiayaMakanan=jumlah.getText();
+        menu1.setVisible(false);
+        menu2.setVisible(false);
+
+        try {
+            DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+            String query1 = "SELECT \"IdPesanan\"	FROM public.\"Pesanan\"\n" +
+" order by \"IdPesanan\" Desc";
+            ResultSet rs = con.getResult(query1);
+            if (rs.next()) {
+                id = rs.getInt("IdPesanan");
+                id += 1;
+                IdPesanan.setText(String.valueOf(id));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+
+        try {
+            DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+            int level = 0;
+            String query1 = "select * from \"Makanan\"";
+            ResultSet rs = con.getResult(query1);
+            while (rs.next()) {
+                menu1.addItem(rs.getString("namaMakanan"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "DB Gagal");
+        }
+
+        try {
+            DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+            int level = 0;
+            String query2 = "select * from \"Minuman\"";
+            ResultSet ts = con.getResult(query2);
+            while (ts.next()) {
+                menu2.addItem(ts.getString("NamaMinuman"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "DB Gagal");
+        }
     }
 
     /**
@@ -31,48 +79,30 @@ public class order extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menu = new javax.swing.JComboBox();
-        jumlah = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        menu1 = new javax.swing.JComboBox();
+        menu2 = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        t_harga2 = new javax.swing.JTextField();
+        jMakan = new javax.swing.JRadioButton();
+        jMinum = new javax.swing.JRadioButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        IdPesanan = new javax.swing.JLabel();
+        Jumlah_txt2 = new javax.swing.JTextField();
+        Jumlah_txt = new javax.swing.JTextField();
+        t_harga1 = new javax.swing.JTextField();
+        total = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        jButton4.setText("jButton4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        menu.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
-        menu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ayam bakar", "ayam goreng", "ayam kecap", "nasi goreng", "sup tulang", "sayur lodeh", " " }));
-        menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuActionPerformed(evt);
-            }
-        });
-        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 160, 20));
-
-        jumlah.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
-        jumlah.setBorder(null);
-        jumlah.setOpaque(false);
-        getContentPane().add(jumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 40, 30));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 150, -1));
-
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 630, 120, 20));
-
-        jScrollPane1.setViewportView(jTextPane1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 260, 150));
 
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -83,10 +113,6 @@ public class order extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 40, 40));
 
-        jLabel2.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
-        jLabel2.setText("Harga : rP.  9.000");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
-
         jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,34 +121,176 @@ public class order extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 613, 60, 60));
 
-        jLabel3.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
-        jLabel3.setText("Total : rp. 1.200.000");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 180, -1));
+        menu1.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
+        menu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(menu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 160, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\order.png")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 410, 700));
+        menu2.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
+        menu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(menu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 160, 20));
+
+        jLabel5.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
+        jLabel5.setText("Jumlah");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
+
+        jLabel6.setText("Harga");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
+
+        t_harga2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_harga2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(t_harga2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 80, -1));
+
+        jMakan.setText("Makanan");
+        jMakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMakanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jMakan, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        jMinum.setText("Minuman");
+        jMinum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMinumActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jMinum, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
+
+        jButton6.setText("Cek Harga");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+
+        jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 620, 120, 40));
+
+        IdPesanan.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
+        getContentPane().add(IdPesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 550, 30, 30));
+        getContentPane().add(Jumlah_txt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 40, -1));
+        getContentPane().add(Jumlah_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 40, -1));
+        getContentPane().add(t_harga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 80, -1));
+
+        total.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 360, 500));
+
+        jLabel2.setText("ID Pesanan");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 560, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/order.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 410, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-new datapesanan().setVisible(true);
-dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-new menu().setVisible(true);
-dispose();// TODO add your handling code here:
+        new menu().setVisible(true);
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-new profil().setVisible(true);
-dispose();// TODO add your handling code here:
+//        new profil().setVisible(true);
+//        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu1ActionPerformed
+
+    private void menu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu2ActionPerformed
+
+    private void jMakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMakanActionPerformed
+        menu1.setVisible(true);
+
+    }//GEN-LAST:event_jMakanActionPerformed
+
+    private void jMinumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinumActionPerformed
+        menu2.setVisible(true);
+    }//GEN-LAST:event_jMinumActionPerformed
+
+    private void t_harga2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_harga2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_harga2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (jMakan.isSelected()) {
+            try {
+                DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+                int level = 0;
+                String query1 = "select \"HargaMakanan\" from \"Makanan\"\n"
+                        + "where \"namaMakanan\"='" + menu1.getSelectedItem() + "'";
+                ResultSet rs = con.getResult(query1);
+                if (rs.next()) {
+                    t_harga1.setText(String.valueOf(rs.getInt("HargaMakanan")));
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "error");
+            }
+        } else if (jMinum.isSelected()) {
+            try {
+                DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+                int level = 0;
+                String query2 = "select \"HargaMinuman\" from \"Minuman\"\n"
+                        + "where \"NamaMinuman\"='" + menu2.getSelectedItem() + "'";
+                ResultSet rs = con.getResult(query2);
+                if (rs.next()) {
+                    t_harga2.setText(String.valueOf(rs.getInt("HargaMinuman")));
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "error");
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+        int jumlah1,jumlah2, harga1,harga2, hasil1,hasil2,total;
+
+        jumlah1 = Integer.valueOf(Jumlah_txt.getText());
+        harga1 = Integer.valueOf(t_harga1.getText());
+      
+        jumlah2 = Integer.valueOf(Jumlah_txt2.getText());
+        harga2 = Integer.valueOf(t_harga2.getText());
+        
+        hasil1 = jumlah1 * harga1;
+        hasil2=jumlah2*harga2;       
+        total=hasil1+hasil2;
+        new datapesanan().setVisible(true);
+        dispose();
+    
+        try {
+            DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+            String query2 = "INSERT INTO public.\"Pesanan\"(\n" +
+"	\"IdPesanan\", \"IdMakanan\", \"JumlahMak\", \"IdMinuman\", \"JumlahMin\", \"Total\")\n" +
+"	VALUES (Default, "+menu1.getSelectedIndex()+", "+Jumlah_txt.getText()+", "+menu2.getSelectedIndex()+", "+Jumlah_txt2.getText()+", "+total+");";
+            con.execute(query2);
+            JOptionPane.showMessageDialog(null, "Berhasil Input");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "error");
+        }
+    
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,16 +306,24 @@ dispose();// TODO add your handling code here:
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(order.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(order.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(order.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(order.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -160,16 +336,24 @@ dispose();// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel IdPesanan;
+    private javax.swing.JTextField Jumlah_txt;
+    private javax.swing.JTextField Jumlah_txt2;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextField jumlah;
-    private javax.swing.JComboBox menu;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton jMakan;
+    private javax.swing.JRadioButton jMinum;
+    private javax.swing.JComboBox menu1;
+    private javax.swing.JComboBox menu2;
+    private javax.swing.JTextField t_harga1;
+    private javax.swing.JTextField t_harga2;
+    private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
 }

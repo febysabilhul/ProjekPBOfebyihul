@@ -18,8 +18,7 @@ public class pesanan extends javax.swing.JFrame {
         initComponents();
        menu.setText(menu.getText());
 jumlah.setText(jumlah.getText()); 
-  this.menu.setText(order.NamaMakanan);
-  this.jumlah.setText(order.BiayaMakanan);
+
        
     }
 
@@ -111,7 +110,7 @@ jumlah.setText(jumlah.getText());
         jLabel11.setText("rp. 2.950.000");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\pemby.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/pemby.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 400, 690));
 
         pack();

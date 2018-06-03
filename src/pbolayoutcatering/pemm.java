@@ -10,13 +10,18 @@ package pbolayoutcatering;
  * @author Febo
  */
 public class pemm extends javax.swing.JFrame {
-
-    /**
+ public static String b = order.a;
+ public static int hasil2=order.hasil1;
+String hasil2AsString = Integer.toString(hasil2);
+ /**
      * Creates new form pemm
      */
     public static String pilih;
     public pemm() {
         initComponents();
+pesanan.setText(b);
+total.setText(hasil2AsString);
+
     }
 
     /**
@@ -34,9 +39,12 @@ public class pemm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        pesanan = new javax.swing.JTextField();
+        total = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,12 +75,11 @@ public class pemm extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
         jLabel3.setText("metode order an");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
 
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
-        jButton4.setOpaque(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -84,24 +91,28 @@ public class pemm extends javax.swing.JFrame {
         jRadioButton1.setText("bri");
         getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
-        jRadioButton2.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
-        jRadioButton2.setText("bayar di tempat");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
-
         jRadioButton3.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
         jRadioButton3.setText("Diantar");
-        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
 
         jRadioButton4.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
         jRadioButton4.setText("diambil sendiri");
-        getContentPane().add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
+        getContentPane().add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\pemby.png")); // NOI18N
+        jLabel4.setText("Pesanan :");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
+
+        jLabel5.setText("Total Pembayaran :");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
+        getContentPane().add(pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 100, -1));
+        getContentPane().add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 130, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/pemby.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 4, 410, 690));
 
         pack();
@@ -122,18 +133,17 @@ dispose();
 if (jRadioButton1.isSelected()){
         new pesanan().setVisible(true);
         dispose();
-    } else if (jRadioButton2.isSelected()){
-        new pesanan().setVisible(true);
-        dispose();
-    }   
+    } 
+      
 
     
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+pesanan.setText(b);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,9 +187,12 @@ if (jRadioButton1.isSelected()){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JTextField pesanan;
+    private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
 }

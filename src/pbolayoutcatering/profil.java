@@ -5,23 +5,33 @@
  */
 package pbolayoutcatering;
 
+import DB.query;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Febo
  */
 public class profil extends javax.swing.JFrame {
 
+    query theQuery;
+
     /**
      * Creates new form profil
      */
-    public profil() {
+    public profil() throws SQLException {
         initComponents();
-nama.setText(nama.getText());
-email.setText(email.getText());
-  this.nama.setText(daftar.NamaUser);
-  this.email.setText(daftar.EmailUser);
-  
-  this.nama.setText(login.NamaUser);
+        theQuery = new query();
+
+//        nama.setText(String.valueOf(theQuery.ambilNama()));
+//        email.setText(String.valueOf(theQuery.ambilEmail()));
+        this.nama.setText(daftar.NamaUser);
+        this.email.setText(daftar.EmailUser);
+
+//        this.nama.setText(login.NamaUser);
+//        this.email.setText(login.EmailUser);
     }
 
     /**
@@ -86,26 +96,26 @@ email.setText(email.getText());
         email.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 80, 220, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\profil.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/profil.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-new lupapas().setVisible(true);
-dispose();
+        new lupapas().setVisible(true);
+        dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       new order().setVisible(true);
-    
+        new order().setVisible(true);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-new menu().setVisible(true);
-dispose();// TODO add your handling code here:
+        new menu().setVisible(true);
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -141,7 +151,11 @@ dispose();// TODO add your handling code here:
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new profil().setVisible(true);
+                try {
+                    new profil().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(profil.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

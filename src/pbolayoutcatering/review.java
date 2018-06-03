@@ -56,7 +56,7 @@ public class review extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 273, 70, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\reviewi.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/reviewi.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, -7, 410, 700));
 
         pack();

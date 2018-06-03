@@ -5,6 +5,12 @@
  */
 package pbolayoutcatering;
 
+import DB.DB_Main;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.internal.runtime.Debug.id;
 /**
  *
  * @author Febo
@@ -16,6 +22,35 @@ public class admin extends javax.swing.JFrame {
      */
     public admin() {
         initComponents();
+        DefaultTableModel model = new DefaultTableModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+            String query1 = "SELECT \"IdPesanan\", \"IdMakanan\", \"JumlahMak\", \"IdMinuman\", \"JumlahMin\", \"Total\"\n" +
+"	FROM public.\"Pesanan\";";
+            ResultSet rs = con.getResult(query1);
+
+            while (rs.next()) {
+                String[] obj = new String[6];
+                obj[0] = rs.getString("IdPesanan");
+                obj[1] = rs.getString("IdMakanan");
+                obj[2] = rs.getString("JumlahMak");
+                obj[3] = rs.getString("IdMinuman");
+                obj[4] = rs.getString("JumlahMin");
+                obj[5] = rs.getString("Total");
+
+                dtm.addRow(obj);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+
     }
 
     /**
@@ -27,26 +62,58 @@ public class admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDayChooser1 = new com.toedter.calendar.JDayChooser();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jDayChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 360, 150));
-        getContentPane().add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 640, -1, -1));
-        getContentPane().add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\sad.png")); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 350, 120));
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 350, 120));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 500, 130));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\admin-pesanan.png")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -2, 410, 700));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "IdPesanan", "IdMakanan", "JumlahMak", "IdMinuman", "JumlahMin", "Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 510, 430));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/PESANAN.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -2, 590, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -84,10 +151,11 @@ public class admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDayChooser jDayChooser1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private com.toedter.calendar.JMonthChooser jMonthChooser1;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

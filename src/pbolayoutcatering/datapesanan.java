@@ -5,17 +5,55 @@
  */
 package pbolayoutcatering;
 
+import DB.DB_Main;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.internal.runtime.Debug.id;
+
 /**
  *
  * @author Febo
  */
 public class datapesanan extends javax.swing.JFrame {
 
+    int id = 0;
+
     /**
      * Creates new form datapesanan
      */
     public datapesanan() {
         initComponents();
+        DefaultTableModel model = new DefaultTableModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+            String query1 = "SELECT \"IdPesanan\", \"IdMakanan\", \"JumlahMak\", \"IdMinuman\", \"JumlahMin\", \"Total\"\n" +
+"	FROM public.\"Pesanan\"\n" +
+"    Order By \"IdPesanan\" desc Limit 1;";
+            ResultSet rs = con.getResult(query1);
+
+            while (rs.next()) {
+                String[] obj = new String[6];
+                obj[0] = rs.getString("IdPesanan");
+                obj[1] = rs.getString("IdMakanan");
+                obj[2] = rs.getString("JumlahMak");
+                obj[3] = rs.getString("IdMinuman");
+                obj[4] = rs.getString("JumlahMin");
+                obj[5] = rs.getString("Total");
+
+                dtm.addRow(obj);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
     }
 
     /**
@@ -33,8 +71,14 @@ public class datapesanan extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,11 +114,16 @@ public class datapesanan extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 123, 350, 120));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 120, 40));
 
         jLabel2.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 102, 0));
         jLabel2.setText("Tambah pesanan");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jButton6.setContentAreaFilled(false);
@@ -85,11 +134,6 @@ public class datapesanan extends javax.swing.JFrame {
         });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 140, 30));
 
-        jLabel3.setFont(new java.awt.Font("Multicolore ", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 102, 0));
-        jLabel3.setText("Beri Komentar");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, -1, -1));
-
         jButton5.setContentAreaFilled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,41 +142,105 @@ public class datapesanan extends javax.swing.JFrame {
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 243, 150, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\2.png")); // NOI18N
+        jButton8.setBackground(new java.awt.Color(255, 153, 0));
+        jButton8.setText("Lanjutkan");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 640, -1, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 220, 30));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 200, 130));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "IdPesanan", "IdMakanan", "JumlahMak", "IdMinuman", "JumlahMin", "Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 370, 280));
+
+        jLabel4.setText("Tanggal pesanan");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+
+        jLabel5.setText("Alamat");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/2.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 3, 400, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-new menu().setVisible(true);
-dispose();// TODO add your handling code here:
+        new menu().setVisible(true);
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-new order().setVisible(true);
-dispose();// TODO add your handling code here:
+        new order().setVisible(true);
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-new profil().setVisible(true);
-dispose();// TODO add your handling code here:
+//new profil().setVisible(true);
+//dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      new detailpesanan().setVisible(true);
-      dispose();
+        new detailpesanan().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       new menu().setVisible(true);
-       dispose();
+        new order().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-new review().setVisible(true);
-dispose();// TODO add your handling code here:
+        new review().setVisible(true);
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        new pemm().setVisible(true);
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+
+        try {
+            DB_Main con = new DB_Main("postgres", "salsabila", "DBpbo");
+            String query1 = "select * from \"Pesanan\"";
+            ResultSet rs = con.getResult(query1);
+            if (rs.next()) {
+                id = rs.getInt("IdPesanan");
+            }
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+
+
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -176,8 +284,14 @@ dispose();// TODO add your handling code here:
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton8;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

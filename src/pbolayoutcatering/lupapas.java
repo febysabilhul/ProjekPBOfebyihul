@@ -43,8 +43,8 @@ public class lupapas extends javax.swing.JFrame {
         jPasswordField2.setOpaque(false);
         getContentPane().add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 220, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\lupa pass.png")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 400, 690));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/lupa pass.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 690));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

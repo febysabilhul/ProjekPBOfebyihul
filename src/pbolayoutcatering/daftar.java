@@ -5,19 +5,35 @@
  */
 package pbolayoutcatering;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Febo
  */
+import DB.query;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class daftar extends javax.swing.JFrame {
 
     /**
      * Creates new form daftar
-     */ public static String NamaUser;
-     public static String EmailUser;
-    public daftar() {
+     */
+    public static String NamaUser;
+    public static String EmailUser;
+    public static String nomorUser;
+    public static String alamatUser;
+    public static String idUser;
+
+    private query theQuery;
+
+    public daftar() throws SQLException {
         initComponents();
-       
+        theQuery = new query();
+
     }
 
     /**
@@ -29,15 +45,19 @@ public class daftar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        id = new javax.swing.JTextField();
         nama = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        Alamat = new javax.swing.JTextField();
+        nomor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 40, -1));
 
         nama.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
         nama.setBorder(null);
@@ -47,7 +67,7 @@ public class daftar extends javax.swing.JFrame {
                 namaActionPerformed(evt);
             }
         });
-        getContentPane().add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 240, 30));
+        getContentPane().add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 240, 30));
 
         email.setFont(new java.awt.Font("Multicolore ", 0, 11)); // NOI18N
         email.setBorder(null);
@@ -57,7 +77,12 @@ public class daftar extends javax.swing.JFrame {
                 emailActionPerformed(evt);
             }
         });
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 240, 30));
+        email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                emailKeyTyped(evt);
+            }
+        });
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 240, 30));
 
         jPasswordField1.setBorder(null);
         jPasswordField1.setOpaque(false);
@@ -66,11 +91,21 @@ public class daftar extends javax.swing.JFrame {
                 jPasswordField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 240, 30));
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 240, 30));
 
         jPasswordField2.setBorder(null);
         jPasswordField2.setOpaque(false);
-        getContentPane().add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 230, 30));
+        jPasswordField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordField2KeyTyped(evt);
+            }
+        });
+        getContentPane().add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 230, 30));
 
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -79,10 +114,23 @@ public class daftar extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 343, 180, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 180, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\daftar.png")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 430, 690));
+        Alamat.setBorder(null);
+        Alamat.setOpaque(false);
+        getContentPane().add(Alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 220, 30));
+
+        nomor.setBorder(null);
+        nomor.setOpaque(false);
+        nomor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomorKeyTyped(evt);
+            }
+        });
+        getContentPane().add(nomor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 220, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/daftar.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -94,9 +142,18 @@ public class daftar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new menu().setVisible(true);
         dispose();
-        this.NamaUser=nama.getText();
-        this.EmailUser=email.getText();
-        
+        this.idUser = id.getText();
+        this.NamaUser = nama.getText();
+        this.EmailUser = email.getText();
+        this.alamatUser = Alamat.getText();
+        this.nomorUser = nomor.getText();
+
+        if (idUser.isEmpty()) {
+            theQuery.insertUser(NamaUser, nomorUser, EmailUser, alamatUser);
+            System.out.println("simpan");
+        } else {
+            System.out.println("update");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
@@ -104,8 +161,35 @@ public class daftar extends javax.swing.JFrame {
     }//GEN-LAST:event_emailActionPerformed
 
     private void namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaActionPerformed
-nama.setToolTipText("Nama lengkap anda"); 
+        nama.setToolTipText("Nama lengkap anda");
     }//GEN-LAST:event_namaActionPerformed
+
+    private void emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailKeyTyped
+
+    private void nomorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomorKeyTyped
+        char nomor = evt.getKeyChar();
+        if (!(Character.isDigit(nomor))
+                || (nomor == KeyEvent.VK_BACK_SPACE)
+                || (nomor == KeyEvent.VK_DELETE)) {
+            JOptionPane.showMessageDialog(this, "masukkan nomor dengan awalan 62");
+            evt.consume();
+        }
+    }//GEN-LAST:event_nomorKeyTyped
+
+    private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyTyped
+//        if (jPasswordField1 <8) { 
+//            
+//        }
+        JOptionPane.showMessageDialog(this, "masukkan minimal 8 digit password");
+        //   evt.consume();        
+    }//GEN-LAST:event_jPasswordField1KeyTyped
+
+    private void jPasswordField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField2KeyTyped
+        JOptionPane.showMessageDialog(this, "masukkan sesuai password sebelumnya");
+        evt.consume();
+    }//GEN-LAST:event_jPasswordField2KeyTyped
 
     /**
      * @param args the command line arguments
@@ -137,17 +221,24 @@ nama.setToolTipText("Nama lengkap anda");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new daftar().setVisible(true);
+                try {
+                    new daftar().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(daftar.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Alamat;
     private javax.swing.JTextField email;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField nama;
+    private javax.swing.JTextField nomor;
     // End of variables declaration//GEN-END:variables
 }

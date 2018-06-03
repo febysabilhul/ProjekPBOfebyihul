@@ -5,11 +5,19 @@
  */
 package pbolayoutcatering;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Febo
  */
 public class menu extends javax.swing.JFrame {
+
+    static void getSelectedItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * Creates new form menu
@@ -44,7 +52,7 @@ public class menu extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 143, 40, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Febo\\Desktop\\KULIAH\\PBO\\layout\\menu.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desain/menu.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 690));
 
         jButton3.setText("jButton3");
@@ -73,7 +81,11 @@ dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-new profil().setVisible(true);
+        try {
+            new profil().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
 dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

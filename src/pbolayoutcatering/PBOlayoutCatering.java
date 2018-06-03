@@ -5,17 +5,19 @@
  */
 package pbolayoutcatering;
 
-/**
- *
- * @author Febo
- */
+import DB.DB_Main;
+import java.sql.SQLException;
 public class PBOlayoutCatering {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    public static void main(String[] args) throws SQLException {
+        DB_Main a = new DB_Main();
+    
+        
+//       
+//        new login().setVisible(true);
+}
     
 }
